@@ -1,0 +1,42 @@
+{% extends 'chat/_base.html' %}
+{% load staticfiles %}
+
+{% block style %}
+  <link href="{% static 'css/common.css' %}" rel="stylesheet">
+{% endblock style %}
+
+{% block content %}
+  <h3>Logged in as <b>{{user.username|escape}}</b>, <a href="{% url 'chat:log_out' %}">Log out</a></h3>
+  <hr>
+  <div class="container mainContainer">
+    <div class="row">
+      <div class="col-md-9 leftContainer">
+        <div class="messages pre-scrollable">
+          <ul class="list-unstyled msgs" id="messages"></ul>
+            <h2 id="start">start chatting ..</h2>
+        </div>
+        <div class="clearfix"></div>
+        <div class="fixed-bottom input-group">
+            <input type="text" class="form-control" placeholder="type a message ..." id="msg">
+            <span class="input-group-btn">
+                <button class="btn btn-info" type="button" id="send">Send</button>
+            </span>
+        </div>
+      </div>
+      <div class="col-md-3 rightContainer">
+        <h2 class="text-center">Users List</h2>
+        <ul class="list-unstyled text-center users">
+          {% for user in users %}
+            <li data-username="{{ user.username|escape }}">
+              {{ user.username|escape }}
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+{% endblock content %}
+
+{% block script %}
+  <script src="{% static 'js/common.js' %}"></script>
+{% endblock script %}

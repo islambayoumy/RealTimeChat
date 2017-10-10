@@ -1,0 +1,4 @@
+django==1.11.1
+psycopg2==2.7.1
+channels==0.17.3
+daphne==0.15.0
